@@ -1,0 +1,41 @@
+name: CD - Deploy Backend a Render
+
+on:
+  push:
+    branches: [ master ]
+  workflow_run:
+    workflows: [ "CI - Build & Tests" ]
+    types: [ completed ]
+    branches: [ master ]
+
+jobs:
+  deploy-backend:
+    name: Deploy a Render
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'push' }}
+
+    steps:
+      - name: Trigger deploy en Render
+        run: |
+          echo "Render redeploya automáticamente desde GitHub. No se requiere acción adicional."
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

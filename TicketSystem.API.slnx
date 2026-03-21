@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="ClassLibrary1/TicketSystem.Dominio.csproj" Id="fe600f06-de46-4347-bfeb-3c52784bb836" />
+  <Project Path="TicketSystem.API/TicketSystem.API.csproj" />
+  <Project Path="TicketSystem.Aplicacion/TicketSystem.Aplicacion.csproj" Id="f6d8e19b-53e5-4737-b53a-231dea3df788" />
+  <Project Path="TicketSystem.Infraestructura/TicketSystem.Infraestructura.csproj" Id="791bd6a2-8209-4a5b-b727-30e8f9e2635e" />
+</Solution>
