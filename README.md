@@ -1,110 +1,27 @@
-# Ticket System (Helpdesk)
+## 💬 System Flow (Core Concept)
 
-Full stack ticket management system built with ASP.NET Core and Vue.js, following Clean Architecture principles.
+The system is designed around a simple idea:  
+a ticket is not just a record, but an active communication channel.
 
-This system allows users to create, assign, and track support tickets, including real-time communication through an integrated chat system.
+### 1. User creates a ticket
+A user submits a request describing a problem or need.
 
----
+### 2. Ticket is assigned
+An operator or admin assigns the ticket to the appropriate person.
 
-## Key Features
+### 3. Real-time communication
+Users and operators communicate directly within the ticket using the integrated chat (SignalR).
 
-- JWT-based authentication and role-based authorization  
-- Ticket lifecycle management (`create`, `assign`, `update status`)  
-- Integrated real-time chat between users and operators  
-- Administrative dashboard for ticket monitoring  
-- RESTful API design  
-- Automated testing (unit and integration tests)  
+This ensures:
+- No loss of context
+- Faster resolution times
+- Centralized communication
 
----
+### 4. Ticket lifecycle management
+The ticket progresses through different states:
+- Pending
+- In Progress
+- Resolved
 
-## Architecture
-
-Backend designed using Clean Architecture:
-
-- `Domain` → Business entities and rules  
-- `Application` → Use cases and application logic  
-- `Infrastructure` → Data access and external services  
-- `API` → REST endpoints  
-
----
-
-## Tech Stack
-
-### Backend
-- `C#`  
-- `ASP.NET Core`  
-- `Entity Framework Core`  
-- `SQL Database`  
-- `JWT Authentication`  
-
-### Frontend
-- `Vue.js`  
-- `JavaScript`  
-- `HTML` / `CSS`  
-- `TailwindCSS`  
-
-### Other
-- `REST APIs`  
-- `Clean Architecture`  
-- `Git`  
-
----
-
-## Real-Time Chat (Core Feature)
-
-The system includes a built-in real-time chat module that allows users to communicate directly with operators and administrators within the platform.
-
-- Direct communication without leaving the ticket system  
-- Faster support resolution  
-- Integrated into the ticket workflow  
-
----
-
-## Testing
-
-Includes automated tests covering:
-
-- Business logic  
-- Application services  
-- API endpoints  
-
-Run tests with:
-
-```bash
-dotnet test
-
-## Running the Project
-
-Clone the repository:
-
-```bash
-git clone https://github.com/julichiosso/TicketSystem.API.git
-
-Configure the database connection in:
-
-appsettings.json
-
-Run migrations:
-
-dotnet ef database update
-
-Start the backend:
-
-dotnet run
-
-Start the frontend:
-
-npm install
-npm run dev
-Project Structure
-TicketSystem/
-├── backend/
-│   ├── Domain/
-│   ├── Application/
-│   ├── Infrastructure/
-│   └── API/
-│
-└── frontend/
-    ├── components/
-    ├── pages/
-    └── services/
+### 5. Audit & tracking
+All actions are logged, providing full traceability of what happened and when.
