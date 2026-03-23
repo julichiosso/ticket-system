@@ -174,7 +174,7 @@
             class="flex items-center gap-3 p-3 rounded-2xl mb-2"
             :class="settingsStore.isDark ? 'bg-slate-900' : 'bg-slate-50'"
           >
-            <div :class="`w-10 h-10 rounded-xl bg-gradient-to-tr ${settingsStore.themeClasses} flex items-center justify-center text-white font-black` text-sm shadow-sm">
+            <div :class="`w-10 h-10 rounded-xl bg-gradient-to-tr ${settingsStore.themeClasses} flex items-center justify-center text-white font-black text-sm shadow-sm`">
               {{ (authStore.user?.name?.[0] ?? 'U').toUpperCase() }}
             </div>
             <div class="flex flex-col min-w-0">

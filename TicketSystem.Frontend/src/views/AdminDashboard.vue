@@ -548,6 +548,8 @@ const fetchMetrics = async () => {
 const fetchAuditLogs = async () => {
   try {
     const res = await axios.get(`${API_URL}/audit`);
+    console.log('AUDIT RAW:', res.data);          // ver toda la respuesta
+    console.log('PRIMER ITEM:', (res.data?.data || [])[0]);
     auditLog.value = (res.data?.data || []).map(l => ({
       id:        l.id || l.Id,
       message:   l.detail || l.Detail,
@@ -613,12 +615,28 @@ const viewSystemLogs     = () => { console.log('Logs:', { tickets: ticketsStore.
 const syncDatabase       = () => { notificationStore.info('Syncing...'); setTimeout(() => notificationStore.success('DB synced.'), 1500); };
 
 const formatTime = (ts) => {
-  const str = ts?.toString() ?? '';
-  const normalized = str.endsWith('Z') || str.includes('+') ? str : str + 'Z';
-  return new Date(normalized).toLocaleString('en-US', {
-    hour: '2-digit', minute: '2-digit', day: '2-digit', month: '2-digit'
+  if (!ts) return 'Sin fecha';
+  
+  let str = ts.toString().trim();
+  
+  if (!str.endsWith('Z') && !str.includes('+') && !str.match(/\d{2}:\d{2}:\d{2}\.\d+[-+]/)) {
+    str = str + 'Z';
+  }
+  
+  const date = new Date(str);
+  
+  if (isNaN(date.getTime())) return 'Fecha inválida';
+  
+  return date.toLocaleString('es-AR', {
+    timeZone: 'America/Argentina/Buenos_Aires',
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit'
   });
 };
+
 
 const addAudit = (msg, type = 'update') => {
   auditLog.value.unshift({ id: Date.now(), message: msg, type, timestamp: Date.now() });
